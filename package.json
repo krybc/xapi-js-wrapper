@@ -1,0 +1,42 @@
+{
+  "name": "xapi-js-wrapper",
+  "version": "1.0.0",
+  "description": "xStation JavaScript wrapper",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krybc/xapi-js-wrapper.git"
+  },
+  "main": "./lib/src/index.js",
+  "types": "./lib/src/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "jest": "XAPI_LOGIN= XAPI_PASSWORD= jest",
+    "test": "XAPI_LOGIN= XAPI_PASSWORD= jest --coverage"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Kamil Rybczyński",
+    "email": "github@rybczynski.io",
+    "url": "http://rybczynski.io"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.9.1",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.2",
+    "ws": "^7.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/jest": "^24.0.13",
+    "@types/ws": "^6.0.1",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
+    "jest-extended": "^0.11.1",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.5"
+  }
+}
