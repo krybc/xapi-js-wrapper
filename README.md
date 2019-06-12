@@ -1,4 +1,6 @@
 # xAPI JS wrapper
+[![Build Status](https://travis-ci.org/krybc/xapi-js-wrapper.svg?branch=master)](https://travis-ci.org/krybc/xapi-js-wrapper)
+[![Coverage Status](https://coveralls.io/repos/github/krybc/xapi-js-wrapper/badge.svg)](https://coveralls.io/github/krybc/xapi-js-wrapper)
 
 xAPI wrapper for nodeJS environment based on websocket and writed in Typescript.
 
