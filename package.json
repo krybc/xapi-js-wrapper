@@ -12,7 +12,7 @@
     "build": "tsc",
     "jest": "XAPI_LOGIN= XAPI_PASSWORD= jest",
     "test": "XAPI_LOGIN= XAPI_PASSWORD= jest --coverage",
-    "test-ci": "jest --coverage --detectOpenHandles && cat ./tests/coverage/lcov.info | coveralls"
+    "test-ci": "jest --coverage --detectOpenHandles && cat ./coverage/lcov.info | coveralls"
   },
   "keywords": [],
   "author": {
