@@ -1,13 +1,19 @@
 {
-  "name": "xapi-js-wrapper",
+  "name": "@krybc/xapi-js-wrapper",
   "version": "1.0.0",
   "description": "xStation JavaScript wrapper",
   "repository": {
     "type": "git",
-    "url": "https://github.com/krybc/xapi-js-wrapper.git"
+    "url": "git+https://github.com/krybc/xapi-js-wrapper.git"
   },
-  "main": "./lib/src/index.js",
-  "types": "./lib/src/index.d.ts",
+  "files": [
+    "./lib/**/*"
+  ],
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "typesVersions": {
+    ">=3.4": { "*": ["ts3.4/*"] }
+  },
   "scripts": {
     "build": "tsc",
     "jest": "XAPI_LOGIN= XAPI_PASSWORD= jest",
@@ -15,12 +21,8 @@
     "test-ci": "jest --coverage --detectOpenHandles && cat ./coverage/lcov.info | coveralls"
   },
   "keywords": [],
-  "author": {
-    "name": "Kamil Rybczyński",
-    "email": "github@rybczynski.io",
-    "url": "http://rybczynski.io"
-  },
-  "license": "ISC",
+  "author": "Kamil Rybczyński <github@rybczynski.io> (http://rybczynski.io)",
+  "license": "MIT",
   "dependencies": {
     "class-transformer": "^0.2.3",
     "class-validator": "^0.9.1",
@@ -40,5 +42,13 @@
     "jest-extended": "^0.11.1",
     "ts-jest": "^24.0.2",
     "typescript": "^3.4.5"
+  },
+  "bugs": {
+    "url": "https://github.com/krybc/xapi-js-wrapper/issues"
+  },
+  "homepage": "https://github.com/krybc/xapi-js-wrapper#readme",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
   }
 }
