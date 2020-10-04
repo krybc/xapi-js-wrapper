@@ -1,6 +1,6 @@
 {
   "name": "@krybc/xapi-js-wrapper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "xStation JavaScript wrapper",
   "repository": {
     "type": "git",
@@ -12,7 +12,11 @@
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "typesVersions": {
-    ">=3.4": { "*": ["ts3.4/*"] }
+    ">=3.4": {
+      "*": [
+        "ts3.4/*"
+      ]
+    }
   },
   "scripts": {
     "build": "tsc",
