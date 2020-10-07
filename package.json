@@ -8,13 +8,6 @@
   },
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
-  "typesVersions": {
-    ">=3.4": {
-      "*": [
-        "ts3.4/*"
-      ]
-    }
-  },
   "scripts": {
     "build": "rimraf -rf lib && tsc -p tsconfig.json",
     "jest": "XAPI_LOGIN= XAPI_PASSWORD= jest",
@@ -34,25 +27,21 @@
     "ws": "^7.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-typescript": "^7.3.3",
-    "@types/jest": "^24.0.13",
-    "@types/ws": "^7.2.6",
-    "babel-jest": "^24.8.0",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-typescript": "^7.10.4",
+    "@types/jest": "^26.0.14",
+    "@types/ws": "^7.2.7",
+    "babel-jest": "^26.5.2",
     "coveralls": "^3.0.4",
-    "jest": "^24.8.0",
-    "jest-extended": "^0.11.1",
+    "jest": "^26.5.2",
+    "jest-extended": "^0.11.5",
     "rimraf": "^3.0.2",
-    "ts-jest": "^24.0.2",
-    "typescript": "^3.4.5"
+    "ts-jest": "^26.4.1",
+    "typescript": "^3.9.7"
   },
   "bugs": {
     "url": "https://github.com/krybc/xapi-js-wrapper/issues"
   },
-  "homepage": "https://github.com/krybc/xapi-js-wrapper#readme",
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  }
+  "homepage": "https://github.com/krybc/xapi-js-wrapper#readme"
 }

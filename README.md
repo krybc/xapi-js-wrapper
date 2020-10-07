@@ -9,7 +9,7 @@ xAPI is a endpoint for xStation forex trading software distributed by one of the
 [xStation website](https://www.xtb.com/en/trading-services/trading-platforms/xstation)
 
 ## Requirements
-* NodeJS >= 8
+* NodeJS >= 12
 
 ## Installation
 

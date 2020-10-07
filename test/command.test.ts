@@ -49,7 +49,7 @@ describe('test sync commands',  () => {
         const result = await conn.executeCommand(new ProfitCalculationCommand(1.4000, 0, 1.3000, 'EURUSD', 1.0));
 
         expect(result.profit).toBeDefined();
-        expect(result.profit).toBeNumber();
+        expect(result.profit).toBeGreaterThan(0);
     });
 
     test('test version command', async () => {
