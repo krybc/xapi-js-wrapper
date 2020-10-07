@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import WebSocket from 'ws';
+import * as WebSocket from 'ws';
 import {plainToClass} from "class-transformer";
 import {Server} from "./server";
 import {Connector} from "./connector";

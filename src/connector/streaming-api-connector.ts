@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import {Server} from './server';
 import {Connector} from './connector';
-import WebSocket from 'ws';
+import * as WebSocket from 'ws';
 import {Observable, Subject} from "rxjs";
 import {plainToClass} from "class-transformer";
 import {

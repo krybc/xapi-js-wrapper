@@ -1,19 +1,24 @@
 {
   "compilerOptions": {
-    "target": "es5",
     "module": "commonjs",
-    "lib": ["es2017", "es7", "es6", "dom"],
     "declaration": true,
-    "rootDir": "src",
-    "outDir": "lib",
-    "strict": true,
-    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "importHelpers": true,
+    "removeComments": true,
+    "noLib": false,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "esModuleInterop": true
+    "target": "es6",
+    "sourceMap": false,
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "skipLibCheck": true
   },
+  "include": [
+    "src/**/*"
+  ],
   "exclude": [
     "node_modules",
-    "lib",
     "test"
   ]
 }

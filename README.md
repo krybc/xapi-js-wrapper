@@ -14,7 +14,7 @@ xAPI is a endpoint for xStation forex trading software distributed by one of the
 ## Installation
 
 ```bash
-npm i --save xapi-js-wrapper
+npm i --save @krybc/xapi-js-wrapper
 ```
 
 

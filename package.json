@@ -6,9 +6,6 @@
     "type": "git",
     "url": "git+https://github.com/krybc/xapi-js-wrapper.git"
   },
-  "files": [
-    "./lib/**/*"
-  ],
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "typesVersions": {
@@ -19,10 +16,12 @@
     }
   },
   "scripts": {
-    "build": "tsc",
+    "build": "rimraf -rf lib && tsc -p tsconfig.json",
     "jest": "XAPI_LOGIN= XAPI_PASSWORD= jest",
     "test": "XAPI_LOGIN= XAPI_PASSWORD= jest --coverage",
-    "test-ci": "jest --coverage --detectOpenHandles && cat ./coverage/lcov.info | coveralls"
+    "test-ci": "jest --coverage --detectOpenHandles && cat ./coverage/lcov.info | coveralls",
+    "prepublish:npm": "npm run build",
+    "publish:npm": "npm publish --access public"
   },
   "keywords": [],
   "author": "Kamil Rybczyński <github@rybczynski.io> (http://rybczynski.io)",
@@ -44,6 +43,7 @@
     "coveralls": "^3.0.4",
     "jest": "^24.8.0",
     "jest-extended": "^0.11.1",
+    "rimraf": "^3.0.2",
     "ts-jest": "^24.0.2",
     "typescript": "^3.4.5"
   },

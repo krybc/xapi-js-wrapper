@@ -1,7 +1,23 @@
 #source
 src
+index.ts
 test
 package-lock.json
 tsconfig.json
+
+#ci
+coverage
+.travis.yml
+
+#IDE
+.idea
+.vscode
+
+#tests
+jest.config.js
+global.d.ts
+
+#misc
+babel.config.js
 
 !lib/*
