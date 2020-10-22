@@ -7,7 +7,7 @@ export class ChartRangeCommand extends BaseCommand {
         private _info: {end: number, period: number, start: number, symbol: string, ticks: number},
     ) {
         super();
-        this._command = 'getChartLastRequest';
+        this._command = 'getChartRangeRequest';
 
         this._arguments = {
             info: plainToClass(ChartRangeInfoRecord, this._info)
