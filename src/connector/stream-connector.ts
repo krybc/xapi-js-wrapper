@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import {Server} from './server';
-import {Connector} from './connector';
+import {BaseConnector} from './base-connector';
 import * as WebSocket from 'ws';
 import {Observable, Subject} from "rxjs";
 import {plainToClass} from "class-transformer";
@@ -32,11 +32,9 @@ import {
 
 import {ApiCommunicationError} from '../errors';
 import {StreamingBaseResponse} from "../responses/streaming-base.response";
+import {fromPromise} from "rxjs/internal-compatibility";
 
-export class StreamingApiConnector extends Connector {
-
-  private subscriptions: { [id: string]: Subject<any> } = {};
-
+export class StreamConnector extends BaseConnector {
   public constructor(
     private server: Server,
     private streamSessionId: string,
@@ -44,25 +42,23 @@ export class StreamingApiConnector extends Connector {
     super();
   }
 
-  public connect(): Promise<StreamingApiConnector> {
-    return new Promise<StreamingApiConnector>((resolve, reject) => {
-      this.apiSocket = new WebSocket(this.server.addressStream, {
+  public connect(): Promise<StreamConnector> {
+    return new Promise<StreamConnector>((resolve, reject) => {
+      this.socket = new WebSocket(this.server.addressStream, {
         perMessageDeflate: false,
         handshakeTimeout: 1000 * 60 * 5
       });
 
-      this.apiSocket.on('open', () => {
+      this.socket.on('open', () => {
         this._connected = true;
         resolve(this);
       });
 
-      this.apiSocket.on('error', (err) => {
-        console.log(err);
+      this.socket.on('error', (err) => {
         reject(err);
       });
 
-      this.apiSocket.on('message', (message: string) => {
-        console.log(message);
+      this.socket.on('message', (message: string) => {
         const response: { command: string, data: { [key: string]: any } } = JSON.parse(message);
         const parsedResponse = this.parseResponse(response);
         this.subscriptions[parsedResponse.command].next(parsedResponse);
@@ -77,7 +73,7 @@ export class StreamingApiConnector extends Connector {
    */
   public subscribeCandles(symbol: string): Observable<StreamingCandleResponse> {
     this.subscriptions.candle = new Subject();
-    this.apiSocket.send(new CandlesSubscribe(this.streamSessionId, symbol).toString());
+    this.socket.send(new CandlesSubscribe(this.streamSessionId, symbol).toString());
 
     return this.subscriptions['candle'].asObservable();
   }
@@ -86,85 +82,85 @@ export class StreamingApiConnector extends Connector {
    * @param symbol
    */
   public stopCandles(symbol: string): void {
-    this.apiSocket.send(new CandlesStop(symbol).toString());
+    this.socket.send(new CandlesStop(symbol).toString());
     this.subscriptions['candle'].unsubscribe();
     delete this.subscriptions['candle'];
   }
 
   public subscribeBalance(): Observable<StreamingBalanceResponse> {
     this.subscriptions.balance = new Subject();
-    this.apiSocket.send(new BalanceSubscribe(this.streamSessionId).toString());
+    this.socket.send(new BalanceSubscribe(this.streamSessionId).toString());
 
     return this.subscriptions['balance'].asObservable();
   }
 
   public stopBalance(): void {
-    this.apiSocket.send(new BalanceStop().toString());
+    this.socket.send(new BalanceStop().toString());
     this.subscriptions['balance'].unsubscribe();
     delete this.subscriptions['balance'];
   }
 
   public subscribeKeepAlive(): Observable<StreamingKeepAliveResponse> {
     this.subscriptions.keepAlive = new Subject();
-    this.apiSocket.send(new KeepAliveSubscribe(this.streamSessionId).toString());
+    this.socket.send(new KeepAliveSubscribe(this.streamSessionId).toString());
 
     return this.subscriptions['keepAlive'].asObservable();
   }
 
   public stopKeepAlive(): void {
-    this.apiSocket.send(new KeepAliveStop().toString());
+    this.socket.send(new KeepAliveStop().toString());
     this.subscriptions['keepAlive'].unsubscribe();
     delete this.subscriptions['keepAlive'];
   }
 
   public subscribeNews(): Observable<StreamingNewsResponse> {
     this.subscriptions.news = new Subject();
-    this.apiSocket.send(new NewsSubscribe(this.streamSessionId).toString());
+    this.socket.send(new NewsSubscribe(this.streamSessionId).toString());
 
     return this.subscriptions['news'].asObservable();
   }
 
   public stopNews(): void {
-    this.apiSocket.send(new NewsStop().toString());
+    this.socket.send(new NewsStop().toString());
     this.subscriptions['news'].unsubscribe();
     delete this.subscriptions['news'];
   }
 
   public subscribeProfits(): Observable<StreamingProfitResponse> {
     this.subscriptions.profit = new Subject();
-    this.apiSocket.send(new ProfitsSubscribe(this.streamSessionId).toString());
+    this.socket.send(new ProfitsSubscribe(this.streamSessionId).toString());
 
     return this.subscriptions['profit'].asObservable();
   }
 
   public stopProfits(): void {
-    this.apiSocket.send(new ProfitsStop().toString());
+    this.socket.send(new ProfitsStop().toString());
     this.subscriptions['profit'].unsubscribe();
     delete this.subscriptions['profit'];
   }
 
   public subscribeTrades(): Observable<StreamingTradeResponse> {
     this.subscriptions.trade = new Subject();
-    this.apiSocket.send(new TradesSubscribe(this.streamSessionId).toString());
+    this.socket.send(new TradesSubscribe(this.streamSessionId).toString());
 
     return this.subscriptions['trade'].asObservable();
   }
 
   public stopTrades(): void {
-    this.apiSocket.send(new TradesStop().toString());
+    this.socket.send(new TradesStop().toString());
     this.subscriptions['trade'].unsubscribe();
     delete this.subscriptions['trade'];
   }
 
   public subscribeTradeStatus(): Observable<StreamingTradeStatusResponse> {
     this.subscriptions.tradeStatus = new Subject();
-    this.apiSocket.send(new TradeStatusSubscribe(this.streamSessionId).toString());
+    this.socket.send(new TradeStatusSubscribe(this.streamSessionId).toString());
 
     return this.subscriptions['tradeStatus'].asObservable();
   }
 
   public stopTradeStatus(): void {
-    this.apiSocket.send(new TradeStatusStop().toString());
+    this.socket.send(new TradeStatusStop().toString());
     this.subscriptions['tradeStatus'].unsubscribe();
     delete this.subscriptions['tradeStatus'];
   }

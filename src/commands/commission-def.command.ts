@@ -6,7 +6,7 @@ export class CommissionDefCommand extends BaseCommand {
         private _volume: number
     ) {
         super();
-        this._command = 'getCalendar';
+        this._command = 'getCommissionDef';
 
         this._arguments = {
             symbol: this._symbol,

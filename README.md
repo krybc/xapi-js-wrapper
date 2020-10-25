@@ -11,6 +11,13 @@ xAPI is a endpoint for xStation forex trading software distributed by one of the
 ## Requirements
 * NodeJS >= 12
 
+
+## Version xapi-js-wrapper vs xApi version
+
+| xapi-js-wrapper | xAPI |  
+|:--|:--|  
+| 2.5.0 | 2.5.0.* |  
+
 ## Installation
 
 ```bash
@@ -26,7 +33,7 @@ Every sync api command class and streaming command class has equal one response 
 ### Connect to sync api
 
 ```js
-import {Servers, SyncApiConnector} from 'xapi-js-wrapper';
+import {Servers, SyncApiConnector} from '@krybc/xapi-js-wrapper';
 
 const server = Servers.get('xtb', 'demo');
 
@@ -40,7 +47,7 @@ new SyncApiConnector(server).connect().then(conn => {
 Streaming API commands is available only if you're logged in, because all streaming commands required `streamSessionId` value, that will be returned by sync `LoginCommand`.
 
 ```js
-import {Servers, StreamingApiConnector} from 'xapi-js-wrapper';
+import {Servers, StreamingApiConnector} from '@krybc/xapi-js-wrapper';
 
 const server = Servers.get('xtb', 'demo');
 
@@ -49,19 +56,25 @@ new StreamingApiConnector(server).connect().then(streamConn => {
 });
 ```
 
+### Run streaming commands
+
+#### GetCandles
+
+```js
+streamConn.subscribeCandles('EURUSD').subscribe((result: StreamingCandleResponse) => {
+  
+});
+```
+
 ### Login
 
 ```js
-const credentials = new Credentials(process.env.XAPI_LOGIN, process.env.XAPI_PASSWORD);
-const result = conn.executeCommand(new LoginCommand(credentials)).then(result => {
+const result = conn.executeCommand('username', 'password').then(result => {
   const sessionId = result.streamSessionId;
 });
 ```
 
 ## Test
-
-You must first enter the login and password variables in package.json
-Then you need to enter command:
 
 ```bash
 npm run test

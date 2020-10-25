@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "whitespace": [true, "check-branch", "check-module", "check-preblock"],
+    "indent": [true, "spaces", 2],
+    "import-spacing": true
+  }
+}

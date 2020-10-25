@@ -1,6 +1,6 @@
 import {Exclude, Expose} from "class-transformer";
-import {TradeOperationCodeEnum} from "../enums/trade-operation-code.enum";
-import {TradeTransactionTypeEnum} from "../enums/trade-transaction-type.enum";
+import {TradeOperationCodeEnum} from "../enums";
+import {TradeTransactionTypeEnum} from "../enums";
 
 @Exclude()
 export class TradeTransInfoRecord {

@@ -10,9 +10,9 @@
   "types": "./lib/index.d.ts",
   "scripts": {
     "build": "rimraf -rf lib && tsc -p tsconfig.json",
-    "jest": "XAPI_LOGIN= XAPI_PASSWORD= jest",
-    "test": "XAPI_LOGIN= XAPI_PASSWORD= jest --coverage",
-    "test-ci": "jest --coverage --detectOpenHandles && cat ./coverage/lcov.info | coveralls",
+    "test": "jest --maxWorkers=1",
+    "test:coverage": "jest --maxWorkers=1 --coverage",
+    "test:ci": "jest --maxWorkers=1 --coverage --detectOpenHandles && cat ./coverage/lcov.info | coveralls",
     "prepublish:npm": "npm run build",
     "publish:npm": "npm publish --access public"
   },

@@ -1,5 +1,5 @@
-import { Servers } from "../../src/connector/servers";
-import {ApiCommunicationError} from "../../src/errors/api-communication.error";
+import { Servers } from "../../src/connector";
+import {ApiCommunicationError} from "../../src/errors";
 
 test('test unavailable server', () => {
     try {

@@ -6,7 +6,7 @@ export class IbsHistoryCommand extends BaseCommand {
         private _start: number
     ) {
         super();
-        this._command = 'getChartLastRequest';
+        this._command = 'getIbsHistory';
 
         this._arguments = {
             end: this._end,
